@@ -132,3 +132,137 @@ banner.autoPlay();
         $(this).children("a").css("color","#f98601")
         $(this).siblings().children("a").css("color","#1e301d")
     })
+    // 买家推荐选项卡
+    $.each($(".animate .top dd"),function(index,item){
+        $(item).on("click",index,function(event){
+           $($(".animate .bottom .bigBox")[index]).css("display","block")
+           .siblings().css("display","none")
+        })
+    })
+    // 瀑布流加载数据
+    function Pubu(){}
+    $.extend(Pubu.prototype,{
+        init:function(){
+            this.wrap = $(".pubu-con .wrap");
+            // this.aGreen = $(".leftFix a");
+            this.loading = false;
+            this.page = 2;
+            this.loadJson()
+            .then(function(res){
+                this.json = res.data;
+                this.renderPage()
+            })
+            this.bindEvent();
+        },
+        loadJson:function(){
+            var opt = {
+                url:"https://www.apiopen.top/satinGodApi?type=1&page=" + this.page,
+                type:"GET",
+                context : this
+            }
+            return $.ajax(opt);
+        },
+        renderPage:function(){
+            var html = "";
+            for(var i = 0;i < this.json.length;i++){
+                html += `
+                <li>
+                    <img src="${this.json[i].thumbnail}" alt="">
+                    <h2>${this.json[i].text}</h2>
+                    <h3>${this.json[i].username}</h3>
+                    <p>${this.json[i].passtime}</p>
+                    <a href=""></a>
+                </li>
+                        `
+            }
+            this.wrap.html(this.wrap.html() + html);
+        },
+        bindEvent(){
+            $(window).on("scroll",this.ifload.bind(this));
+        },
+        ifload(){
+            var scrollTop = $("html,body").scrollTop();
+            var clientHeight = $("html")[0].clientHeight;
+            var lastBox = this.wrap.children("li:last");
+            if(scrollTop + clientHeight > lastBox.offset().top){
+                if(this.loading || this.page > 9){
+                    return 0;
+                }
+                this.loading = true;
+                this.page ++;
+                this.loadJson()
+                .then(function(res){
+                    this.json = res.data;
+                    this.renderPage();
+                    this.loading = false;
+                })
+            }
+        }
+    })
+    var pubu = new Pubu();
+    pubu.init();
+    // 左边栏特效
+    $(".leftFix a:first-child").click(function(){
+        $("html,body").scrollTop(0);
+    })
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 985){
+            $(".leftFix").css("display","block")
+        }else{
+            $(".leftFix").css("display","none")
+        }  
+        if($(window).scrollTop() > 1700 && $(window).scrollTop() < 3186){
+            $(".leftFix a:eq(1)").css("background-position-x","-43px")
+        }else{
+            $(".leftFix a:eq(1)").css("background-position-x","0")
+        }
+
+        if($(window).scrollTop() > 3186 && $(window).scrollTop() < 4738){
+            $(".leftFix a:eq(2)").css("background-position-x","-43px")
+        }else{
+            $(".leftFix a:eq(2)").css("background-position-x","0")
+        }
+
+        if($(window).scrollTop() > 4738 && $(window).scrollTop() < 6258){
+            $(".leftFix a:eq(3)").css("background-position-x","-43px")
+        }else{
+            $(".leftFix a:eq(3)").css("background-position-x","0")
+        }
+
+        if($(window).scrollTop() > 6258 && $(window).scrollTop() < 7686){
+            $(".leftFix a:eq(4)").css("background-position-x","-43px")
+        }else{
+            $(".leftFix a:eq(4)").css("background-position-x","0")
+        }
+
+        if($(window).scrollTop() > 7686 && $(window).scrollTop() < 9186){
+            $(".leftFix a:eq(5)").css("background-position-x","-43px")
+        }else{
+            $(".leftFix a:eq(5)").css("background-position-x","0")
+        }
+
+        if($(window).scrollTop() > 9186 && $(window).scrollTop() < 10786){
+            $(".leftFix a:eq(6)").css("background-position-x","-43px")
+        }else{
+            $(".leftFix a:eq(6)").css("background-position-x","0")
+        }
+
+        if($(window).scrollTop() > 10786 && $(window).scrollTop() < 12285){
+            $(".leftFix a:eq(7)").css("background-position-x","-43px")
+        }else{
+            $(".leftFix a:eq(7)").css("background-position-x","0")
+        }
+
+        if($(window).scrollTop() > 12285 && $(window).scrollTop() < 14000){
+            $(".leftFix a:eq(8)").css("background-position-x","-43px")
+        }else{
+            $(".leftFix a:eq(8)").css("background-position-x","0")
+        }
+
+        if($(window).scrollTop() > 14000){
+            $(".leftFix a:eq(9)").css("background-position-x","-43px")
+        }else{
+            $(".leftFix a:eq(9)").css("background-position-x","0")
+        }
+    })
+    
