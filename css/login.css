@@ -42,6 +42,17 @@ img {
   width: 1200px;
   margin: 0 auto; }
 
+@keyframes myfirst {
+  0% {
+    transform: scale(0.45);
+    opacity: 1; }
+  50% {
+    transform: scale(1);
+    opacity: 0.5; }
+  100% {
+    transform: scale(1.59);
+    opacity: 0; } }
+
 .top-con > div {
   float: left; }
 
@@ -614,276 +625,249 @@ img {
     .nav .nav-con .firstDiv ~ a:hover {
       background: #78a000; }
 
-.fada-con .top {
-  width: 1200px;
+.logintop {
+  height: 40px;
+  width: 100%;
   color: #959595;
-  line-height: 40px; }
-  .fada-con .top a {
-    font-size: 12px;
+  line-height: 40px;
+  font-size: 12px; }
+  .logintop a {
     color: #959595;
-    line-height: 40px; }
-  .fada-con .top i {
-    font-size: 12px;
-    color: #959595;
-    line-height: 40px; }
+    font-size: 12px; }
 
-.fada-con .center {
-  position: relative; }
-  .fada-con .center .left {
-    width: 84px;
-    float: left;
-    height: 502px;
-    overflow: hidden; }
-    .fada-con .center .left .btn_top {
-      width: 82px;
-      height: 15px;
-      text-align: center;
-      border: 1px solid #c9c9c9;
-      background: url(../images/xq4.png) 33px 5px no-repeat;
-      display: block; }
-    .fada-con .center .left .btn_top:hover {
-      border: 1px solid #8ab800; }
-    .fada-con .center .left .imgBox {
-      width: 84px;
-      height: 460px;
-      margin-top: 8px; }
-      .fada-con .center .left .imgBox a {
-        border: 1px solid #c9c9c9;
-        display: block;
-        margin-bottom: 8px; }
-        .fada-con .center .left .imgBox a img {
-          width: 82px;
-          height: 82px; }
-      .fada-con .center .left .imgBox a.active {
-        border: 1px solid #8ab800; }
-      .fada-con .center .left .imgBox a:hover {
-        border: 1px solid #8ab800; }
-    .fada-con .center .left .btn_bottom {
-      width: 82px;
-      height: 15px;
+.loginBox .left {
+  float: left;
+  width: 460px;
+  border: 1px solid #ddd;
+  margin-bottom: 50px;
+  min-height: 388px; }
+  .loginBox .left ul:nth-of-type(1) {
+    padding: 35px; }
+    .loginBox .left ul:nth-of-type(1) p {
       float: left;
-      text-align: center;
-      border: 1px solid #c9c9c9;
-      background: url(../images/xq4.png) 33px -21px no-repeat; }
-    .fada-con .center .left .btn_bottom:hover {
-      border: 1px solid #8ab800; }
-  .fada-con .center .middle {
-    float: left;
-    width: 500px;
-    height: 500px;
-    border: 1px solid #c9c9c9;
-    overflow: hidden;
-    margin-left: 10px;
-    position: relative; }
-    .fada-con .center .middle img {
-      width: 100%;
-      height: 100%;
-      display: none; }
-    .fada-con .center .middle img.active {
-      display: block; }
-    .fada-con .center .middle .zhezhao {
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      background: #fff;
-      opacity: 0;
-      z-index: 100; }
-    .fada-con .center .middle .fang {
-      width: 175px;
-      height: 175px;
-      visibility: visible;
-      top: 0px;
-      left: 0px;
-      position: absolute;
-      z-index: 1;
-      border: 1px solid #aaa;
-      background: #fff;
-      opacity: .5;
-      display: none; }
-  .fada-con .center .bigImg {
-    position: absolute;
-    left: 600px;
-    width: 500px;
-    height: 500px;
-    z-index: 30;
-    overflow: hidden;
-    background: #fff;
-    display: none; }
-    .fada-con .center .bigImg img {
-      display: none;
-      position: absolute;
-      left: 0;
-      top: 0; }
-    .fada-con .center .bigImg img.active {
-      display: block; }
-  .fada-con .center .right {
-    width: 570px;
-    height: 524px;
-    float: left;
-    padding-left: 30px;
-    position: relative; }
-    .fada-con .center .right .none {
-      position: absolute;
-      top: 163px;
-      width: 220px;
-      background-color: #fff;
+      background: url(../images/lo1.png) 0 -62px no-repeat;
+      font: 400 18px/30px "Microsoft YaHei";
+      padding-left: 40px; }
+  .loginBox .left ul:nth-of-type(2) {
+    margin-top: 50px;
+    min-height: 381px;
+    padding: 0 30px;
+    width: 400px;
+    font-size: 12px;
+    color: #333; }
+    .loginBox .left ul:nth-of-type(2) dl:nth-of-type(1) {
+      width: 398px;
       border: 1px solid #ddd;
-      text-align: center;
-      padding-bottom: 10px;
-      display: none; }
-      .fada-con .center .right .none span:nth-of-type(1) {
-        background-color: #f4f4f4;
+      margin-bottom: 30px;
+      padding: 7px 0;
+      position: relative;
+      z-index: 0;
+      height: 30px; }
+      .loginBox .left ul:nth-of-type(2) dl:nth-of-type(1) s {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        background: url(../images/lo1.png) 0 -102px no-repeat; }
+      .loginBox .left ul:nth-of-type(2) dl:nth-of-type(1) p {
+        float: left;
+        width: 100px;
+        text-align: center;
+        border-right: 1px solid #ddd;
+        font: 400 14px/28px "Microsoft YaHei";
+        margin-right: 10px; }
+      .loginBox .left ul:nth-of-type(2) dl:nth-of-type(1) input {
+        font: 400 14px/28px "Microsoft YaHei";
+        width: 240px;
+        height: 28px;
+        border: 0;
+        float: left;
+        outline: none; }
+      .loginBox .left ul:nth-of-type(2) dl:nth-of-type(1) div {
+        position: absolute;
+        top: -30px;
+        display: none;
+        left: 0;
         line-height: 30px;
-        color: 12px;
-        display: block;
-        width: 100%; }
-      .fada-con .center .right .none span:nth-of-type(2) {
+        color: #ff6900; }
+    .loginBox .left ul:nth-of-type(2) dl:nth-of-type(2) {
+      width: 398px;
+      border: 1px solid #ddd;
+      margin-bottom: 30px;
+      padding: 7px 0;
+      position: relative;
+      z-index: 0;
+      height: 30px; }
+      .loginBox .left ul:nth-of-type(2) dl:nth-of-type(2) s {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        background: url(../images/lo1.png) 0 -102px no-repeat; }
+      .loginBox .left ul:nth-of-type(2) dl:nth-of-type(2) p {
+        float: left;
+        width: 100px;
+        text-align: center;
+        border-right: 1px solid #ddd;
+        font: 400 14px/28px "Microsoft YaHei";
+        margin-right: 10px; }
+      .loginBox .left ul:nth-of-type(2) dl:nth-of-type(2) input {
+        font: 400 14px/28px "Microsoft YaHei";
+        width: 240px;
+        height: 28px;
+        border: 0;
+        float: left;
+        outline: none; }
+      .loginBox .left ul:nth-of-type(2) dl:nth-of-type(2) div {
+        position: absolute;
+        top: -30px;
+        display: none;
+        left: 0;
         line-height: 30px;
-        color: 12px;
-        font-weight: 600;
+        color: #ff6900; }
+    .loginBox .left ul:nth-of-type(2) div:nth-of-type(1) {
+      font: 400 14px/20px "Microsoft YaHei";
+      width: 100%;
+      margin-bottom: 20px;
+      position: relative; }
+      .loginBox .left ul:nth-of-type(2) div:nth-of-type(1) a {
+        color: #8ab700;
+        margin-left: 5px; }
+    .loginBox .left ul:nth-of-type(2) div:nth-of-type(2) {
+      width: 100%; }
+      .loginBox .left ul:nth-of-type(2) div:nth-of-type(2) a {
         display: block;
-        width: 100%; }
-      .fada-con .center .right .none img {
         width: 100%;
-        height: 100%; }
-    .fada-con .center .right h2 {
-      font: 800 18px/34px "Microsoft YaHei";
-      color: #4c4c4c; }
-    .fada-con .center .right h3 {
-      font-size: 14px;
-      color: #ff6900;
-      line-height: 26px;
-      border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 10px; }
-    .fada-con .center .right > p:nth-of-type(1) {
-      margin-top: 20px; }
-      .fada-con .center .right > p:nth-of-type(1) span {
-        color: #fff;
-        font-size: 14px;
+        text-align: center;
+        font: 400 24px/58px "Microsoft YaHei";
         background-color: #ff6900;
-        line-height: 26px;
-        padding: 0 8px;
-        margin-right: 10px;
-        display: block;
-        float: left; }
-      .fada-con .center .right > p:nth-of-type(1) i {
-        font: 800 26px/26px "Microsoft YaHei";
-        color: #ff6900;
-        float: left;
-        display: block; }
-      .fada-con .center .right > p:nth-of-type(1) em {
-        font: 800 16px/26px "Microsoft YaHei";
-        color: #4c4c4c;
-        margin-left: 10px;
-        text-decoration: line-through;
-        display: block;
-        float: left; }
-      .fada-con .center .right > p:nth-of-type(1) a {
-        border: 1px solid #e7e7e7;
-        line-height: 18px;
-        color: #4c4c4c;
-        padding: 0 10px 0 25px;
-        display: block;
-        width: 50px;
-        height: 20px;
-        font-size: 12px;
-        float: left;
-        margin-left: 30px;
-        background: url(../images/xq5.gif) 10px -63px no-repeat; }
-      .fada-con .center .right > p:nth-of-type(1) a:hover {
-        border: 1px solid #78a000; }
-    .fada-con .center .right > p:nth-of-type(2) {
-      margin-top: 20px;
-      width: 97px;
-      height: 26px;
-      background: url(../images/xq7.png) 0 0 no-repeat #ff6900;
-      padding-left: 28px;
-      line-height: 26px;
-      text-decoration: none;
-      margin-bottom: 20px; }
-      .fada-con .center .right > p:nth-of-type(2) a {
-        font-size: 14px;
         color: #fff; }
-    .fada-con .center .right .xuan {
-      border-top: 1px solid #e0e0e0;
-      padding-top: 10px;
-      color: #4c4c4c;
-      font-size: 12px; }
-      .fada-con .center .right .xuan > p {
-        margin-top: 5px;
-        height: 42px;
-        line-height: 42px; }
-        .fada-con .center .right .xuan > p span {
-          margin-left: 10px;
-          padding: 5px 15px;
-          height: 42px;
-          line-height: 42px;
-          color: #ccc;
-          border: 1px solid #e5e5e5;
-          cursor: pointer; }
-        .fada-con .center .right .xuan > p span:nth-child(1) {
-          margin-left: 40px; }
-        .fada-con .center .right .xuan > p span.active {
-          cursor: pointer;
-          border: 2px solid #90c000;
-          padding: 4px 14px;
-          color: #626252;
-          background: url(../images/xq6.gif) no-repeat 100% 14px; }
-      .fada-con .center .right .xuan > div {
-        margin-top: 20px; }
-        .fada-con .center .right .xuan > div dt {
-          width: 75px;
-          height: 50px;
-          float: left; }
-          .fada-con .center .right .xuan > div dt input {
-            border: 1px solid #cdcdcd;
-            width: 54px;
-            height: 48px;
-            font: 400 24px/48px "Microsoft YaHei";
-            color: #626262;
-            text-align: center;
-            float: left; }
-          .fada-con .center .right .xuan > div dt a {
-            float: left;
-            width: 19px;
-            height: 25px;
-            display: block;
-            background: url(../images/xq4.png) 0 -52px no-repeat; }
-          .fada-con .center .right .xuan > div dt a:nth-of-type(2) {
-            background: url(../images/xq4.png) -20px -52px no-repeat; }
-        .fada-con .center .right .xuan > div dd > a {
-          float: left;
-          margin-left: 15px;
-          width: 182px;
-          height: 52px;
-          display: block;
-          background: url(../images/xq8.gif) no-repeat; }
-        .fada-con .center .right .xuan > div dd > span:nth-of-type(1) {
-          float: left;
-          height: 52px;
-          margin-left: 20px;
-          line-height: 52px; }
-        .fada-con .center .right .xuan > div dd > span:nth-of-type(2) {
-          font: 400 18px/52px "Microsoft YaHei";
-          color: #ff6900;
-          padding: 0 8px;
-          float: left; }
-        .fada-con .center .right .xuan > div dd > p {
-          float: left;
-          height: 52px;
-          line-height: 52px; }
-          .fada-con .center .right .xuan > div dd > p span {
-            padding: 0 5px; }
-          .fada-con .center .right .xuan > div dd > p a {
-            font-size: 12px;
-            color: #4c4c4c; }
-          .fada-con .center .right .xuan > div dd > p a:hover {
-            color: #ff6900; }
-    .fada-con .center .right > p:nth-of-type(3) {
-      color: #333;
-      font-size: 12px;
-      margin-top: 50px; }
-      .fada-con .center .right > p:nth-of-type(3) span {
-        display: block; }
+      .loginBox .left ul:nth-of-type(2) div:nth-of-type(2) a:hover {
+        opacity: 0.8; }
+    .loginBox .left ul:nth-of-type(2) div:nth-of-type(3) {
+      width: 100%;
+      text-align: right;
+      font: 400 14px/35px "Microsoft YaHei";
+      padding-bottom: 25px; }
+      .loginBox .left ul:nth-of-type(2) div:nth-of-type(3) a {
+        color: #8ab700;
+        margin-left: 5px; }
+  .loginBox .left ul:nth-of-type(3) {
+    border-top: 5px solid #f4f4f4;
+    padding: 0 30px 10px 30px;
+    width: 400px; }
+    .loginBox .left ul:nth-of-type(3) p:nth-child(1) {
+      font: 400 14px/50px "Microsoft YaHei"; }
+    .loginBox .left ul:nth-of-type(3) p:nth-child(2) em {
+      margin: 0 10px 10px 0;
+      float: left; }
+      .loginBox .left ul:nth-of-type(3) p:nth-child(2) em a {
+        font: 400 12px/30px "宋体";
+        color: #666;
+        padding: 0 6px 0 32px;
+        display: block;
+        height: 30px;
+        border: 1px solid #eaeaea;
+        background: url(../images/lo1.png) 6px -197px no-repeat #fbfbfb; }
+    .loginBox .left ul:nth-of-type(3) p:nth-child(2) em:nth-child(2) a {
+      background: url(../images/lo1.png) 6px -227px no-repeat #fbfbfb; }
+    .loginBox .left ul:nth-of-type(3) p:nth-child(2) em:nth-child(3) a {
+      background: url(../images/lo1.png) 6px -257px no-repeat #fbfbfb; }
+    .loginBox .left ul:nth-of-type(3) p:nth-child(2) em:nth-child(4) a {
+      background: url(../images/lo1.png) 6px -287px no-repeat #fbfbfb; }
+    .loginBox .left ul:nth-of-type(3) p:nth-child(2) em:nth-child(5) a {
+      background: url(../images/lo1.png) 6px -757px no-repeat #fbfbfb; }
+    .loginBox .left ul:nth-of-type(3) p:nth-child(2) em:nth-child(6) a {
+      background: url(../images/lo1.png) 6px -807px no-repeat #fbfbfb; }
+
+.loginBox .right {
+  float: right; }
+
+.wendu {
+  height: 120px;
+  background: #f8f8f6; }
+
+.newhand-con dl {
+  margin-top: 20px;
+  float: left;
+  width: 230px;
+  height: 160px; }
+  .newhand-con dl h2 {
+    font: 700 14px/26px "微软雅黑";
+    height: 26px;
+    margin-bottom: 10px;
+    color: #666;
+    padding-left: 35px;
+    background: url(../images/b1.gif) 0 -250px no-repeat; }
+  .newhand-con dl a {
+    display: block;
+    width: 100px;
+    height: 25px;
+    color: #666;
+    font-size: 12px;
+    padding-left: 25px;
+    border-left: 1px dotted #ccc; }
+  .newhand-con dl a:hover {
+    text-decoration: underline;
+    color: #eb6100; }
+
+.newhand-con dl:nth-child(1) {
+  margin-left: 220px; }
+
+.newhand-con dl:nth-child(2) h2 {
+  background: url(../images/b1.gif) 0 -280px no-repeat; }
+
+.newhand-con dl:nth-child(3) h2 {
+  background: url(../images/b1.gif) 0 -314px no-repeat; }
+
+.newhand-con dl:nth-child(4) h2 {
+  background: url(../images/b1.gif) 0 -348px no-repeat; }
+
+.footer-con {
+  text-align: center; }
+  .footer-con > a {
+    width: 128px;
+    height: 47px;
+    display: block;
+    margin: 0 auto; }
+  .footer-con h2 {
+    margin-top: 30px;
+    font: 800 14px/30px "Microsoft YaHei";
+    color: #666; }
+    .footer-con h2 img {
+      display: inline; }
+  .footer-con p:nth-of-type(1) {
+    font-family: "宋体","Arial Narrow",HELVETICA;
+    font-size: 12px; }
+    .footer-con p:nth-of-type(1) a {
+      color: #666;
+      line-height: 24px;
+      padding: 0 10px; }
+    .footer-con p:nth-of-type(1) i {
+      width: 1px;
+      height: 12px;
+      background: #666;
+      display: inline-block;
+      vertical-align: middle; }
+  .footer-con p:nth-of-type(2) {
+    font-family: "宋体","Arial Narrow",HELVETICA;
+    font-size: 12px; }
+    .footer-con p:nth-of-type(2) a {
+      color: #666;
+      line-height: 24px;
+      padding: 0 10px; }
+    .footer-con p:nth-of-type(2) a:nth-of-type(1) {
+      background: url(../images/b4.png) no-repeat;
+      padding-left: 20px; }
+    .footer-con p:nth-of-type(2) i {
+      width: 1px;
+      height: 12px;
+      background: #666;
+      display: inline-block;
+      vertical-align: middle; }
+  .footer-con p:nth-of-type(3) {
+    line-height: 24px;
+    color: #666;
+    font-size: 12px; }

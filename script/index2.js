@@ -1,3 +1,4 @@
+// 点击弹出城市选项
 $(".top-con .center a").click(function(){
     $(".zhezhao").css({
         opacity: 0.5,
