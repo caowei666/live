@@ -1,5 +1,88 @@
-$(function(){$(".shanChu").click(function(){$(".canHide").css({display:"none"})}),$(".ulli3").hover(function(){$(".ulli3>div").css({display:"block"})},function(){$(".ulli3>div").css({display:"none"})}),$(".top-con .right li:nth-of-type(4)").hover(function(){$(".top-con .right li:nth-of-type(4) div").css({display:"block"})},function(){$(".top-con .right li:nth-of-type(4) div").css({display:"none"})}),$(".top-con .center a").click(function(){$(".zhezhao").css({opacity:.5,height:2218,width:"100%"}),$(".zhezhaoCenter").css("display","block")}),$(".closeCity").click(function(){$(".zhezhao").css({opacity:0,height:0,width:0}),$(".zhezhaoCenter").css("display","none")})});
-// 登陆注册下9张图片轮播
+// 最顶上功能
+$(function(){
+    $(".shanChu").click(function(){
+        $(".canHide").css({
+            display:"none"
+        })
+    })
+// 滑到本来生活弹出二维码
+    $(".ulli3").hover(
+        function(){
+            $(".ulli3>div").css({
+                display:"block"
+            })
+        },
+        function(){
+            $(".ulli3>div").css({
+                display:"none"
+            })
+        }
+    )
+    $(".top-con .right li:nth-of-type(4)").hover(
+        function(){
+            $(".top-con .right li:nth-of-type(4) div").css({
+                display:"block"
+            })
+        },
+        function(){
+            $(".top-con .right li:nth-of-type(4) div").css({
+                display:"none"
+            })
+        }
+    )
+    // 点击出现遮罩
+    $(".top-con .center a").click(function(){
+        $(".zhezhao").css({
+            opacity: 0.5,
+            height: 2218,
+            width: "100%"
+        })
+        $(".zhezhaoCenter").css("display","block")
+    })
+    $(".closeCity").click(function(){
+        $(".zhezhao").css({
+            opacity: 0,
+            height: 0,
+            width: 0
+        })
+        $(".zhezhaoCenter").css("display","none");
+    })
+    
+})
+    // 登陆注册下9张图片轮播
+    function Banner(){}
+    Object.assign(Banner.prototype , {
+        init(){
+            this.nowIndex = 0;
+            this.show_list = document.querySelectorAll(".bankImg a");
+            this.itmeNum = this.show_list.length;
+        },  
+        next(){
+            if(this.nowIndex == this.itmeNum){
+                this.nowIndex = 1;
+            }else{
+                this.nowIndex ++;
+            }
+            this.animate();
+        },
+        animate(){
+            $(this.show_list).removeClass("active");
+            if(this.nowIndex == this.itmeNum){
+                this.show_list[0].className = "active"
+            }else{
+                this.show_list[this.nowIndex].className = "active";
+            }
+        },
+        autoPlay(){
+            this.autoTimer = setInterval(function(){
+                this.next();
+            }.bind(this),1000)
+        }
+    })
+    var banner = new Banner();
+    banner.init();
+    banner.autoPlay()
+    // 登陆注册下9张图片轮播
 function Banner(){}
 Object.assign(Banner.prototype , {
     init(){

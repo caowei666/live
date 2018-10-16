@@ -38,6 +38,10 @@ img {
 .clear_fix {
   zoom: 1; }
 
+.top-con, .logo-con, .nav-con, .bannerBottom-con, .wrap-con, .pubu-con, .wendu-con, .newhand-con, .footer-con, .fada-con {
+  width: 1200px;
+  margin: 0 auto; }
+
 @keyframes myfirst {
   0% {
     transform: scale(0.45);
@@ -48,10 +52,6 @@ img {
   100% {
     transform: scale(1.59);
     opacity: 0; } }
-
-.top-con, .logo-con, .nav-con, .bannerBottom-con, .wrap-con, .pubu-con, .wendu-con, .newhand-con, .footer-con {
-  width: 1200px;
-  margin: 0 auto; }
 
 .canHide-con {
   height: 126px;
@@ -1317,6 +1317,7 @@ img {
   .leftFix a:hover {
     background-position-x: -43px !important; }
   .leftFix a:nth-child(1) {
+    display: block;
     background: url(../images/b5.png) 0 -516px no-repeat; }
   .leftFix a:nth-child(2) {
     background: url(../images/b5.png) 0 -86px no-repeat; }
