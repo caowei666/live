@@ -249,12 +249,12 @@ banner.autoPlay();
             var html = "";
             for(var i = 0;i < this.json.length;i++){
                 html += `
-                <li id="${this.json[i].soureid}">
+                <li>
                     <img src="${this.json[i].thumbnail}" alt="">
                     <h2>${this.json[i].text}</h2>
                     <h3>${this.json[i].username}</h3>
                     <p>${this.json[i].passtime}</p>
-                    <a href=""></a>
+                    <a id="${this.json[i].soureid}" href="javascript:void(0)"></a>
                 </li>
                         `
             }
@@ -262,6 +262,8 @@ banner.autoPlay();
         },
         bindEvent(){
             $(window).on("scroll",this.ifload.bind(this));
+            $(".pubu-con .wrap").on("click",this.addcar.bind(this));
+            $(".gouwuche dt a").on("mouseenter",this.showlist.bind(this));
         },
         ifload(){
             var scrollTop = $("html,body").scrollTop();
@@ -280,10 +282,100 @@ banner.autoPlay();
                     this.loading = false;
                 })
             }
+        },
+        addcar:function(event){
+            var target = event.target ;
+            var goodsId = $(target).attr("id");
+            var cookie;
+            if(cookie = cookieFZ("shopCar")){
+                // console.log(cookie)
+                var cookieArray = JSON.parse(cookie);
+                // cookieArray.push(goodsId);
+                var hasGoods = false;
+                for(var i = 0;i < cookieArray.length;i++){
+                    if(cookieArray[i].id == goodsId){
+                        hasGoods = true;
+                        cookieArray[i].num ++;
+                        break;
+                    } 
+                }
+                if(hasGoods == false){
+                    var goods = {
+                        id : goodsId,
+                        num : "1"
+                    }
+                    cookieArray.push(goods)
+                }
+                cookieFZ("shopCar",JSON.stringify(cookieArray))
+                // console.log(cookie)
+            }else{
+                cookieFZ("shopCar",`[{"id":"${goodsId}","num":"1"}]`)
+            }
+            this.listSum();
+        },
+        showlist:function(event){
+            var target = event.target;
+            // if(target != $(".gouwuche dt a")) return 0;
+            var cookie;
+            if(!(cookie = cookieFZ("shopCar"))){return 0}
+            var cookieArray = JSON.parse(cookie);
+            var html = "";
+            for(var i = 0;i < cookieArray.length;i++){
+                // console.log(cookieArray[i])
+                console.log(this.json)
+                for(var j = 0;j < this.json.length;j++){
+                    if(cookieArray[i].id == this.json[j].soureid){
+                        html +=`
+                        <li class="clear_fix">
+                            <img src="${this.json[j].thumbnail}" alt="">
+                            <h2>${this.json[j].text}</h2>
+                            <strong>${cookieArray[i].num}</strong>
+                        </li>
+                        `
+                        break;
+                    }
+                }
+            }
+            $(".gouwuche dt ul").html(html);
+        },
+        listSum:function(){
+            console.log(1)
+            var cookie;
+            if(!(cookie = cookieFZ("shopCar"))){ 
+                $(".gouwuche dt>div").html(0);
+                return 0;
+            };
+            var cookieArray = JSON.parse(cookie);
+            var sum = 0;
+            for(var i = 0 ; i < cookieArray.length ; i ++){
+                sum += Number(cookieArray[i].num);
+            }
+            $(".gouwuche dt div").html(sum);
         }
     })
     var pubu = new Pubu();
     pubu.init();
+    // function ShopCar(){}
+    // $.extend(ShopCar.prototype,{
+    //     init:function(){
+    //         this.item = $(".pubu-con .wrap");
+    //         this.carlist = $(".gouwuche dt p span");
+    //         this.addbtn = $(".pubu-con .wrap li a");
+    //         console.log(this.addbtn,this.item)
+    //         this.bindEvent();
+    //     },
+    //     bindEvent:function(){
+        
+    //     },
+    //     addcar:function(event){
+    //         // var target = event.target;
+    //         // console.log(event)
+    //         // var goodID = $(target).attr("id");
+    //         // console.log(goodID);
+    //     }
+    // })
+    // var shopCar = new ShopCar();
+    // shopCar.init();
     // 左边栏特效
     $(".leftFix a:first-child").click(function(){
         $("html,body").scrollTop(0);
@@ -376,4 +468,60 @@ banner.autoPlay();
             $(".leftFix a[href='#28705303']").css("display","block")
         }
     })
+    // 封装的cookie函数
+    function cookieFZ(name,value,options){
+        // 通过参数的个数进行判断; 严谨验证参数类型;
+        // --- 获取cookie -----
+        if(arguments.length == 1 && typeof name == "string"){
+            var cookieArray = document.cookie.split("; ");
+            for(var i = 0 ; i < cookieArray.length ; i ++){
+                if(cookieArray[i].split("=")[0] === name){
+                    return cookieArray[i].split("=")[1];
+                }
+            }
+            return "";
+        }
+        // --- 设置cookie -----
+        var cookieStr = name+"="+value;
+        if(options == undefined || typeof options != "object"){
+            return document.cookie = cookieStr;
+        }
+        if(typeof options.path == "string"){
+            cookieStr += ";path="+options.path;
+        }
+        if(typeof options.expires == "number" || typeof options.expires == "string"){
+            var d = new Date();
+            d.setDate(d.getDate() + options.expires);
+            cookieStr += ";expires=" + d;
+        }
+        return document.cookie = cookieStr;
+    }
+    function removeCookie(name,path){
+        setCookie(name,"",{
+            expires:-1,
+            // 做一个参数判断 , 不让path 为undefined;
+            path: path ? path : ""
+        })
+    }
+    // function ShopCar(){}
+    // $.extend(ShopCar.prototype,{
+    //     init:function(){
+    //         this.item = $(".pubu-con .wrap");
+    //         this.carlist = $(".gouwuche dt p span");
+    //         this.addbtn = $(".pubu-con .wrap li a");
+    //         console.log(this.addbtn,this.item)
+    //         this.bindEvent();
+    //     },
+    //     bindEvent:function(){
+        
+    //     },
+    //     addcar:function(event){
+    //         // var target = event.target;
+    //         // console.log(event)
+    //         // var goodID = $(target).attr("id");
+    //         // console.log(goodID);
+    //     }
+    // })
+    // var shopCar = new ShopCar();
+    // shopCar.init();
     
