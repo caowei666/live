@@ -322,7 +322,7 @@ banner.autoPlay();
             var html = "";
             for(var i = 0;i < cookieArray.length;i++){
                 // console.log(cookieArray[i])
-                console.log(this.json)
+                // console.log(this.json)
                 for(var j = 0;j < this.json.length;j++){
                     if(cookieArray[i].id == this.json[j].soureid){
                         html +=`
@@ -339,7 +339,6 @@ banner.autoPlay();
             $(".gouwuche dt ul").html(html);
         },
         listSum:function(){
-            console.log(1)
             var cookie;
             if(!(cookie = cookieFZ("shopCar"))){ 
                 $(".gouwuche dt>div").html(0);
@@ -355,6 +354,19 @@ banner.autoPlay();
     })
     var pubu = new Pubu();
     pubu.init();
+    window.onload = function(){
+            var cookie;
+            if(!(cookie = cookieFZ("shopCar"))){ 
+                $(".gouwuche dt>div").html(0);
+                return 0;
+            };
+            var cookieArray = JSON.parse(cookie);
+            var sum = 0;
+            for(var i = 0 ; i < cookieArray.length ; i ++){
+                sum += Number(cookieArray[i].num);
+            }
+            $(".gouwuche dt div").html(sum);
+    }
     // function ShopCar(){}
     // $.extend(ShopCar.prototype,{
     //     init:function(){
@@ -503,25 +515,14 @@ banner.autoPlay();
             path: path ? path : ""
         })
     }
-    // function ShopCar(){}
-    // $.extend(ShopCar.prototype,{
-    //     init:function(){
-    //         this.item = $(".pubu-con .wrap");
-    //         this.carlist = $(".gouwuche dt p span");
-    //         this.addbtn = $(".pubu-con .wrap li a");
-    //         console.log(this.addbtn,this.item)
-    //         this.bindEvent();
-    //     },
-    //     bindEvent:function(){
-        
-    //     },
-    //     addcar:function(event){
-    //         // var target = event.target;
-    //         // console.log(event)
-    //         // var goodID = $(target).attr("id");
-    //         // console.log(goodID);
-    //     }
-    // })
-    // var shopCar = new ShopCar();
-    // shopCar.init();
-    
+   
+    // 显示登录名
+    window.onload = function(){
+        if(document.cookie.split("=")[0] == ""){
+            $("#login").html("你好，请登录");
+        }else{
+            var cookieArr = document.cookie.split("; ").length - 1;
+            $("#login").html(document.cookie.split("; ")[cookieArr].split("=")[0]);
+        }
+        // console.log(document.cookie)
+    }
