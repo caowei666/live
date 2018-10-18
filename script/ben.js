@@ -262,8 +262,11 @@ banner.autoPlay();
         },
         bindEvent(){
             $(window).on("scroll",this.ifload.bind(this));
-            $(".pubu-con .wrap").on("click",this.addcar.bind(this));
+            $(".pubu-con .wrap").on("click"," li a",this.addcar.bind(this));
             $(".gouwuche dt a").on("mouseenter",this.showlist.bind(this));
+            $(".gouwuche ul").on("click","li h3",this.removeGoods.bind(this));
+            $(".gouwuche").on("mouseenter",this.showSpan.bind(this));
+            $(document).on("mousemove",this.listSum.bind(this));
         },
         ifload(){
             var scrollTop = $("html,body").scrollTop();
@@ -314,8 +317,6 @@ banner.autoPlay();
             this.listSum();
         },
         showlist:function(event){
-            var target = event.target;
-            // if(target != $(".gouwuche dt a")) return 0;
             var cookie;
             if(!(cookie = cookieFZ("shopCar"))){return 0}
             var cookieArray = JSON.parse(cookie);
@@ -326,9 +327,10 @@ banner.autoPlay();
                 for(var j = 0;j < this.json.length;j++){
                     if(cookieArray[i].id == this.json[j].soureid){
                         html +=`
-                        <li class="clear_fix">
+                        <li id="${this.json[j].soureid}" class="clear_fix">
                             <img src="${this.json[j].thumbnail}" alt="">
                             <h2>${this.json[j].text}</h2>
+                            <h3>移除</h3>
                             <strong>${cookieArray[i].num}</strong>
                         </li>
                         `
@@ -350,44 +352,31 @@ banner.autoPlay();
                 sum += Number(cookieArray[i].num);
             }
             $(".gouwuche dt div").html(sum);
+        },
+        removeGoods:function(event){
+            var target = event.target;
+            var cookieArr = JSON.parse(cookieFZ("shopCar"))
+            for(var i = 0;i < cookieArr.length;i++){
+                if(cookieArr[i].id == $(target).parent()[0].id){
+                    var cookieDelete = cookieArr.splice(i,1)
+                    $(target).parent().remove()
+                } 
+            }
+            cookieFZ("shopCar",JSON.stringify(cookieArr))
+            this.listSum();
+            this.addcar();
+            this.showlist();
+        },
+        showSpan:function(){
+            if($(".gouwuche dt>div").html() == "0"){
+                // removeCookie("shopCar","/")
+                $(".gouwuche ul").append("<span>购物车中还没有商品，赶紧选购吧!</span>")
+            }
         }
     })
     var pubu = new Pubu();
     pubu.init();
-    window.onload = function(){
-            var cookie;
-            if(!(cookie = cookieFZ("shopCar"))){ 
-                $(".gouwuche dt>div").html(0);
-                return 0;
-            };
-            var cookieArray = JSON.parse(cookie);
-            var sum = 0;
-            for(var i = 0 ; i < cookieArray.length ; i ++){
-                sum += Number(cookieArray[i].num);
-            }
-            $(".gouwuche dt div").html(sum);
-    }
-    // function ShopCar(){}
-    // $.extend(ShopCar.prototype,{
-    //     init:function(){
-    //         this.item = $(".pubu-con .wrap");
-    //         this.carlist = $(".gouwuche dt p span");
-    //         this.addbtn = $(".pubu-con .wrap li a");
-    //         console.log(this.addbtn,this.item)
-    //         this.bindEvent();
-    //     },
-    //     bindEvent:function(){
-        
-    //     },
-    //     addcar:function(event){
-    //         // var target = event.target;
-    //         // console.log(event)
-    //         // var goodID = $(target).attr("id");
-    //         // console.log(goodID);
-    //     }
-    // })
-    // var shopCar = new ShopCar();
-    // shopCar.init();
+    
     // 左边栏特效
     $(".leftFix a:first-child").click(function(){
         $("html,body").scrollTop(0);
@@ -509,7 +498,7 @@ banner.autoPlay();
         return document.cookie = cookieStr;
     }
     function removeCookie(name,path){
-        setCookie(name,"",{
+        cookieFZ(name,"",{
             expires:-1,
             // 做一个参数判断 , 不让path 为undefined;
             path: path ? path : ""

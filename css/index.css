@@ -473,7 +473,9 @@ img {
         right: -1px;
         z-index: 66;
         width: 333px;
-        display: none; }
+        display: none;
+        overflow: auto;
+        max-height: 400px; }
         .logo-con .gouwuche dt ul span {
           display: block;
           text-align: center;
@@ -482,7 +484,8 @@ img {
           font-size: 12px;
           color: #333; }
         .logo-con .gouwuche dt ul li {
-          margin-top: 20px; }
+          margin-top: 20px;
+          position: relative; }
           .logo-con .gouwuche dt ul li img {
             float: left;
             width: 50px;
@@ -501,10 +504,22 @@ img {
           .logo-con .gouwuche dt ul li h2:hover {
             color: red;
             text-decoration: underline; }
+          .logo-con .gouwuche dt ul li h3 {
+            position: absolute;
+            display: none;
+            background: yellow;
+            right: 30px;
+            top: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid #659934;
+            color: red; }
           .logo-con .gouwuche dt ul li strong {
             float: right;
             font-size: 14px;
             line-height: 50px; }
+        .logo-con .gouwuche dt ul li:hover h3 {
+          display: block; }
     .logo-con .gouwuche dt:hover ul {
       display: block; }
     .logo-con .gouwuche dt:hover a {
