@@ -51,6 +51,7 @@ $.each($(".fada-con .center .imgBox a"),function(index,item){
         .siblings().removeClass("active")
     })
 })
+
 // 点击内容增加1
 $(".xuan dt a:nth-of-type(1)").click(function(){
     $(".xuan dt input").attr("value",Number($(".xuan dt input").attr("value"))+1)
@@ -82,20 +83,19 @@ $(".fada-con").on("mouseleave",".center .middle",function(){
 $(".fada-con").on("mousemove",".center .middle",function(event){
     var offsetX = event.offsetX;
     var offsetY = event.offsetY;
-    var nleft = offsetX - 90;
-    var ntop= offsetY - 90;
+    var nleft = offsetX - 250/2;
+    var ntop= offsetY - 250/2;
     nleft = nleft < 0 ? 0 : nleft;
     ntop = ntop < 0 ? 0 : ntop;
-    nleft = nleft > 325 ? 325 : nleft;
-    ntop = ntop > 325 ? 325 :ntop;
+    nleft = nleft > 250 ? 250 : nleft;
+    ntop = ntop > 250 ? 250 :ntop;
     $(".fang").css({
         left:nleft,
         top:ntop
     })
-    var bi =$(this)[0].offsetWidth / 325;
     $(".bigImg img").css({
-        left:-bi * nleft,
-        top:-bi * ntop
+        left: -2*nleft,
+        top: -2*ntop
     })
 
 })
@@ -105,9 +105,9 @@ function Data(){}
 $.extend(Data.prototype,{
     init:function(){
         this.wrap = $(".fada-con");
-        console.log(this.wrap)
         this.page = cookieFZ("goodsId").split(",")[1];
         // console.log(cookieFZ("goodsId"))
+        console.log(this.page)
         this.loadJson()
         .then(function(res){
             this.json = res.data;
@@ -124,83 +124,29 @@ $.extend(Data.prototype,{
     },
     renderPage:function(){
         var id = cookieFZ("goodsId").split(",")[0];
-        console.log(this.json)
-        var html = "";
+        // var html = "";
+        // console.log(this.json,id)
         for(var i = 0;i < this.json.length;i++){
             if(this.json[i].soureid == id){
-                html +=`
-                <div class="top">
-                <a href="index.html">首页</a>>
-                <a href="index.html">热门推荐</a>>
-                <a href="index.html">水产海鲜</a>>
-                <a href="index.html">厄瓜多尔白虾</a>>
-                <i>${this.json[i].text}</i>
-            </div>
-            <div class="center clear_fix">
-                <div class="left">
-                    <a href="javascript:void(0)" class="btn_top"></a>
-                    <div class="imgBox">
-                        <a class="active" href="javascript:void(0)"><img src="${this.json[i].thumbnail}" alt=""></a>
-                        <a href="javascript:void(0)"><img src="${this.json[i].header}" alt=""></a>
-                        <a href="javascript:void(0)"><img src="images/xq3.jpg" alt=""></a>
-                    </div>
-                    <a href="javascript:void(0)" class="btn_bottom"></a>
-                </div>
-                <div class="middle">
-                        <div class="zhezhao"></div>
-                        <div class="fang"></div>
-                    <img class="active" src="images/xq1.jpg" alt="">
-                    <img src="images/xq2.jpg" alt="">
-                    <img src="images/xq3.jpg" alt="">
-                    
-                </div>
-                <div class="bigImg">
-                    <img class="active" src="images/xq1.jpg" alt="">
-                    <img src="images/xq2.jpg" alt="">
-                    <img src="images/xq3.jpg" alt="">
-                </div>
-                <div class="right">
-                    <div class="none">
-                        <span>移动下单，惊喜连连</span>
-                        <img src="images/q5.png" alt="">
-                        <span>扫描下载客户端</span>
-                    </div>
-                    <h2>${this.json[i].text}</h2>
-                    <h3>原装进口 40-50/kg</h3>
-                    <p class="clear_fix">
-                        <span>促销价</span>
-                        <i>￥149.00</i>
-                        <em>￥218.00</em>
-                        <a href="javascript:void(0)">降价通知</a>
-                    </p>
-                    <p class="buy">
-                        <a href="javascript:void(0)">手机购买</a>
-                    </p>
-                    <div class="xuan">
-                        <p>产地:<span class="active">厄瓜多耳</span><span>泰国</span></p>
-                        <p>规格:<span>每公斤30-40只</span><span class="active">每公斤40-50只</span><span>每公斤50-60只</span></p>
-                        <p>重量:<span class="active">2kg</span><span>500g</span><span>1.8kg</span><span>1kg*2</span></p>
-                        <div class="clear_fix">
-                            <dt>
-                                <input type="text" value="10">
-                                <a href="javascript:void(0)"></a>
-                                <a href="javascript:void(0)"></a>
-                            </dt>
-                            <dd>
-                                <a href="javascript:void(0)"></a>
-                                <span>好评率</span>
-                                <span>98%</span>
-                                <p>(<span>5162</span><a href="javascript:void(0)">人评价</a>)</p>
-                            </dd>
-                        </div>
-                    </div>
-                    <p><span>温馨提示：</span><span>白虾冷冻冰层很薄，食用前轻轻一摔冻上的虾即可分开，吃多少取多少，不必全部化冻</span></p>
-                </div>
-            </div>
-            `
+                console.log(this.json)
+                $(".fada-con .top i").html(this.json[i].text)
+                $(".fada-con .center .left .imgBox a:nth-child(1) img").attr("src",this.json[i].thumbnail)
+                $(".fada-con .center .left .imgBox a:nth-child(2) img").attr("src",this.json[i].header)
+                $(".fada-con .center .middle img:nth-of-type(1)").attr("src",this.json[i].thumbnail)
+                $(".fada-con .center .middle img:nth-of-type(2)").attr("src",this.json[i].header)
+                $(".fada-con .center .bigImg img:nth-of-type(1)").attr("src",this.json[i].thumbnail)
+                $(".fada-con .center .bigImg img:nth-of-type(2)").attr("src",this.json[i].header)
+                $(".fada-con .center .right>h2").html(this.json[i].text)
+                $(".addC").attr("id",this.json[i].soureid)
+                $(".addC").on("click",this.addcar.bind(this));
             }
         }
-        this.wrap.html(html)
+    },
+    addcar:function(event){
+        var cookie;
+        if(cookie = cookieFZ("shopCar")){
+            var cookieArray = JSON.parse(cookie);
+        }
     }
 })
 var data = new Data()

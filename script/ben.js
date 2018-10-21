@@ -267,7 +267,8 @@ banner.autoPlay();
             $(".gouwuche ul").on("click","li h3",this.removeGoods.bind(this));
             $(".gouwuche").on("mouseenter",this.showSpan.bind(this));
             $(document).on("mousemove",this.listSum.bind(this));
-            $(".wrap").on("click","li",this.detail.bind(this));
+            $(".pubu-con .wrap").on("click","li img,li h2",this.detail.bind(this));
+
         },
         ifload(){
             var scrollTop = $("html,body").scrollTop();
@@ -376,11 +377,17 @@ banner.autoPlay();
         },
         detail:function(event){
             var target = event.target;
-            var aArr = $(".wrap li");
+            // console.log($(target).parents("li"))
+            var aArr = $(".wrap li img");
+            // console.log(aArr)
             if(Array.from(aArr).indexOf(target) != -1){
-                console.log(this.page)
-                console.log($(target).attr("data-id"))
-                cookieFZ("goodsId",[$(target).attr("data-id"),this.page])
+                // console.log(this.page)
+                // console.log($(target).attr("data-id"))
+                var page = 0;
+                // var ali = $(".wrap li")
+                page = Math.ceil(($(target).parents("li").index()+1) / 20)
+                // console.log($(target).index()+1,page)
+                cookieFZ("goodsId",[$(target).parents("li").attr("data-id"),page+1])
                 location.href = "detail.html"
             }
         }
