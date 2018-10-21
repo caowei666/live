@@ -249,7 +249,7 @@ banner.autoPlay();
             var html = "";
             for(var i = 0;i < this.json.length;i++){
                 html += `
-                <li>
+                <li data-id="${this.json[i].soureid}">
                     <img src="${this.json[i].thumbnail}" alt="">
                     <h2>${this.json[i].text}</h2>
                     <h3>${this.json[i].username}</h3>
@@ -267,6 +267,7 @@ banner.autoPlay();
             $(".gouwuche ul").on("click","li h3",this.removeGoods.bind(this));
             $(".gouwuche").on("mouseenter",this.showSpan.bind(this));
             $(document).on("mousemove",this.listSum.bind(this));
+            $(".wrap").on("click","li",this.detail.bind(this));
         },
         ifload(){
             var scrollTop = $("html,body").scrollTop();
@@ -372,6 +373,16 @@ banner.autoPlay();
                 // removeCookie("shopCar","/")
                 $(".gouwuche ul").append("<span>购物车中还没有商品，赶紧选购吧!</span>")
             }
+        },
+        detail:function(event){
+            var target = event.target;
+            var aArr = $(".wrap li");
+            if(Array.from(aArr).indexOf(target) != -1){
+                console.log(this.page)
+                console.log($(target).attr("data-id"))
+                cookieFZ("goodsId",[$(target).attr("data-id"),this.page])
+                location.href = "detail.html"
+            }
         }
     })
     var pubu = new Pubu();
@@ -469,6 +480,21 @@ banner.autoPlay();
             $(".leftFix a[href='#28705303']").css("display","block")
         }
     })
+
+    // 详情页页面传值
+    // $(".wrap").on("click","li",function(event){
+    //     var evt = event || window.event;
+    //     var target = evt.target || evt.srcElement;
+    //     var aArr = $(".wrap li")
+    //     // console.log(aArr)
+    //     if(Array.from(aArr).indexOf(target) != -1){
+    //         console.log($(target).attr("data-id"))
+    //         cookieFZ("goodsId",$(target).attr("data-id"))
+    //         location.href = "detail.html"
+    //     }
+    // })
+
+
     // 封装的cookie函数
     function cookieFZ(name,value,options){
         // 通过参数的个数进行判断; 严谨验证参数类型;
