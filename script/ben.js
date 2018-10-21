@@ -232,7 +232,9 @@ banner.autoPlay();
             this.loadJson()
             .then(function(res){
                 this.json = res.data;
+                this.arr = [];
                 this.renderPage()
+                this.arr = this.json;
             })
             this.bindEvent();
         },
@@ -245,7 +247,7 @@ banner.autoPlay();
             return $.ajax(opt);
         },
         renderPage:function(){
-            // console.log(this.json)
+            // console.log(this.arr)
             var html = "";
             for(var i = 0;i < this.json.length;i++){
                 html += `
@@ -267,8 +269,13 @@ banner.autoPlay();
             $(".gouwuche ul").on("click","li h3",this.removeGoods.bind(this));
             $(".gouwuche").on("mouseenter",this.showSpan.bind(this));
             $(document).on("mousemove",this.listSum.bind(this));
-            $(".pubu-con .wrap").on("click","li img,li h2",this.detail.bind(this));
-
+            $(".pubu-con .wrap").on("click","li img",this.detail.bind(this));
+            $(".gouwuche").on("dblclick",function(){
+                removeCookie("shopCar")
+                $(".gouwuche").find("li").remove();
+                $(".gouwuche ul").append("<span>购物车中还没有商品，赶紧选购吧!</span>");
+                $(".gouwuche dt div").html(0);
+            }.bind(this));
         },
         ifload(){
             var scrollTop = $("html,body").scrollTop();
@@ -284,6 +291,7 @@ banner.autoPlay();
                 .then(function(res){
                     this.json = res.data;
                     this.renderPage();
+                    this.arr = this.arr.concat(this.json)
                     this.loading = false;
                 })
             }
@@ -312,7 +320,6 @@ banner.autoPlay();
                     cookieArray.push(goods)
                 }
                 cookieFZ("shopCar",JSON.stringify(cookieArray))
-                // console.log(cookie)
             }else{
                 cookieFZ("shopCar",`[{"id":"${goodsId}","num":"1"}]`)
             }
@@ -326,12 +333,12 @@ banner.autoPlay();
             for(var i = 0;i < cookieArray.length;i++){
                 // console.log(cookieArray[i])
                 // console.log(this.json)
-                for(var j = 0;j < this.json.length;j++){
-                    if(cookieArray[i].id == this.json[j].soureid){
+                for(var j = 0;j < this.arr.length;j++){
+                    if(cookieArray[i].id == this.arr[j].soureid){
                         html +=`
-                        <li id="${this.json[j].soureid}" class="clear_fix">
-                            <img src="${this.json[j].thumbnail}" alt="">
-                            <h2>${this.json[j].text}</h2>
+                        <li id="${this.arr[j].soureid}" class="clear_fix">
+                            <img src="${this.arr[j].thumbnail}" alt="">
+                            <h2>${this.arr[j].text}</h2>
                             <h3>移除</h3>
                             <strong>${cookieArray[i].num}</strong>
                         </li>
@@ -370,7 +377,7 @@ banner.autoPlay();
             this.showlist();
         },
         showSpan:function(){
-            if($(".gouwuche dt>div").html() == "0"){
+            if($(".gouwuche dt>div").html() == "0" && $(".gouwuche ul").html() == ""){
                 // removeCookie("shopCar","/")
                 $(".gouwuche ul").append("<span>购物车中还没有商品，赶紧选购吧!</span>")
             }
@@ -488,18 +495,6 @@ banner.autoPlay();
         }
     })
 
-    // 详情页页面传值
-    // $(".wrap").on("click","li",function(event){
-    //     var evt = event || window.event;
-    //     var target = evt.target || evt.srcElement;
-    //     var aArr = $(".wrap li")
-    //     // console.log(aArr)
-    //     if(Array.from(aArr).indexOf(target) != -1){
-    //         console.log($(target).attr("data-id"))
-    //         cookieFZ("goodsId",$(target).attr("data-id"))
-    //         location.href = "detail.html"
-    //     }
-    // })
 
 
     // 封装的cookie函数
